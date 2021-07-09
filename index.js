@@ -6,6 +6,7 @@
 // const TOKEN = 'TELEGRAM_TOKEN_HERE';
 
 const TelegramBot = require('node-telegram-bot-api');
+var TOKEN='1822323948:AAEB46qYQFB2zeMggh9DquvIX-7xbX71mvM';
 const musicApi = require('./api-parser');
 const db = require('./db-parser');
 const config = require('./config');
@@ -91,7 +92,7 @@ function onSearchText(msg, match) {
     reply_to_message_id: msg.message_id,
     parse_mode: 'HTML',
   }
-  bot.sendChatAction(msg.chat.id, 'typing');
+  bot.sendChatAction(msg.chat.id, 'typing please wait');
   musicApi.getSongs(msg.chat, 'search', keyword).then((songs) => {
     bot.sendMessage(msg.chat.id, songs, opts);
   })
@@ -99,7 +100,7 @@ function onSearchText(msg, match) {
 
 function onRecent(msg) {
   const opts = { parse_mode: 'HTML' }
-  bot.sendChatAction(msg.chat.id, 'typing');
+  bot.sendChatAction(msg.chat.id, 'typing please wait');
   musicApi.getSongs(msg.chat, 'recent').then((songs) => {
     bot.sendMessage(msg.chat.id, songs, opts);
   })
@@ -107,7 +108,7 @@ function onRecent(msg) {
 
 function onPopular(msg) {
   const opts = { parse_mode: 'HTML' }
-  bot.sendChatAction(msg.chat.id, 'typing');
+  bot.sendChatAction(msg.chat.id, 'typing please wait');
   musicApi.getSongs(msg.chat, 'popular').then((songs) => {
     bot.sendMessage(msg.chat.id, songs, opts);
   })
@@ -116,7 +117,7 @@ function onPopular(msg) {
 // Matches /traditional
 function onTraditional(msg) {
   const opts = { parse_mode: 'HTML' }
-  bot.sendChatAction(msg.chat.id, 'typing');
+  bot.sendChatAction(msg.chat.id, 'typing please wait');
   musicApi.getSongs(msg.chat, 'traditional').then((songs) => {
     bot.sendMessage(msg.chat.id, songs, opts);
   })
@@ -125,7 +126,7 @@ function onTraditional(msg) {
 // // Matches /random
 function onRandom(msg) {
   const opts = { parse_mode: 'HTML' }
-  bot.sendChatAction(msg.chat.id, 'typing');
+  bot.sendChatAction(msg.chat.id, 'typing please wait');
   musicApi.getSongs(msg.chat, 'random').then((songs) => {
     bot.sendMessage(msg.chat.id, songs, opts);
   })
